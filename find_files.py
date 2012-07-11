@@ -51,10 +51,12 @@ def find_files_iter(path,extension=None,exclude=None,file_name=None):
                 yield os.path.abspath(os.path.join(dir_path,name))
 
 def find_files(path,extension=None,exclude=None,file_name=None):
+    path = os.path.expanduser(path)
     r = [f for f in find_files_iter(path,extension,exclude,file_name)]
     return r
 
 def find_dirs(path,exclude=None):
+    path = os.path.expanduser(path)
     r = [f for f in find_dirs_iter(path,exclude)]
     return r
 
