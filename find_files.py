@@ -1,5 +1,6 @@
 
 import os
+import glob
 
 version_info = (0, 0, 2)
 __version__ = '.'.join(map(str, version_info))
@@ -52,11 +53,22 @@ def find_files_iter(path,extension=None,exclude=None,file_name=None):
 
 def find_files(path,extension=None,exclude=None,file_name=None):
     path = os.path.expanduser(path)
-    r = [f for f in find_files_iter(path,extension,exclude,file_name)]
-    return r
+    path_list = glob.glob(path)
+    print "List", path_list
+    res = []
+    for path in path_list:
+        r = [f for f in find_files_iter(path,extension,exclude,file_name)]
+        res.extend(r)
+    return res
 
 def find_dirs(path,exclude=None):
     path = os.path.expanduser(path)
-    r = [f for f in find_dirs_iter(path,exclude)]
-    return r
+    path_list = glob.glob(path)
+    print "LIST", path_list
+    res = []
+    for path in path_list:
+        r = [f for f in find_dirs_iter(path,exclude)]
+        res.extend(r)
+    return res
+# vim: ts=8 sts=4 expandtab shiftwidth=4
 
