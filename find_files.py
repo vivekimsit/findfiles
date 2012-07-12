@@ -54,7 +54,6 @@ def find_files_iter(path,extension=None,exclude=None,file_name=None):
 def find_files(path,extension=None,exclude=None,file_name=None):
     path = os.path.expanduser(path)
     path_list = glob.glob(path)
-    print "List", path_list
     res = []
     for path in path_list:
         r = [f for f in find_files_iter(path,extension,exclude,file_name)]
@@ -64,7 +63,6 @@ def find_files(path,extension=None,exclude=None,file_name=None):
 def find_dirs(path,exclude=None):
     path = os.path.expanduser(path)
     path_list = glob.glob(path)
-    print "LIST", path_list
     res = []
     for path in path_list:
         r = [f for f in find_dirs_iter(path,exclude)]
